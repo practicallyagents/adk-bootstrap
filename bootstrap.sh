@@ -23,7 +23,8 @@ uv init
 uv venv
 uv add google-adk
 
-read -rp "Enter agent name: " agent_name
+read -rp "Enter agent name [agent]: " agent_name
+agent_name="${agent_name:-agent}"
 
 # Scaffold the agent package using ADK's built-in command
 uv run adk create "$agent_name"
