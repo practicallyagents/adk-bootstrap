@@ -10,5 +10,5 @@ Requirements:
 ## Usage
 
 ```bash
-curl -sS https://raw.githubusercontent.com/practicallyagents/adk-bootstrap/refs/heads/main/bootstrap.sh | bash
+bash <(curl -sS https://raw.githubusercontent.com/practicallyagents/adk-bootstrap/refs/heads/main/bootstrap.sh)
 ```
