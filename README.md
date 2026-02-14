@@ -10,5 +10,5 @@ Requirements:
 ## Usage
 
 ```bash
-TODO: insert code here to run bootstrap.sh script
+curl -sS https://raw.githubusercontent.com/practicallyagents/adk-bootstrap/refs/heads/main/bootstrap.sh | bash
 ```
