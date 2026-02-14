@@ -28,12 +28,56 @@ read -rp "Enter agent name: " agent_name
 # Scaffold the agent package using ADK's built-in command
 uv run adk create "$agent_name"
 
+# Populate README with run instructions
+cat > README.md <<EOF
+# $project_name
+
+Google ADK project bootstrapped with [adk-bootstrap](https://github.com/practicallyagents/adk-bootstrap).
+
+## Prerequisites
+
+- Python 3
+- [uv](https://docs.astral.sh/uv/)
+
+## Setup
+
+Configure your API key in \`$agent_name/.env\`.
+
+## Running
+
+Run the agent interactively in the CLI:
+
+\`\`\`sh
+make run
+\`\`\`
+
+Launch the dev web UI on port 8000:
+
+\`\`\`sh
+make web
+\`\`\`
+EOF
+
+# Generate Makefile with convenience targets
+cat > Makefile <<EOF
+.PHONY: run web
+
+run:
+	uv run adk run $agent_name
+
+web:
+	uv run adk web --port 8000
+EOF
+
+cd "$agent_name"
+mkdir tools
+mkdir agents
+
 echo ""
 echo "Project '$project_name' created successfully!"
 echo ""
 echo "Next steps:"
 echo "  cd $project_name"
-echo "  source .venv/bin/activate"
-echo "  # Set your API key in $project_name/.env"
-echo "  adk run $project_name"
-echo "  adk web"
+echo "  # Set your API key in $agent_name/.env"
+echo "  make run   # interactive CLI"
+echo "  make web   # web UI on port 8000"
